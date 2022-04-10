@@ -34,7 +34,7 @@ const Auth = () => {
         e.preventDefault()
         const {fullName, username, password, phoneNumber, avatarURL} = form
 
-        const URL = 'http://localhost:5000/auth'
+        const URL = 'https://fleetchat-qaaawzs.herokuapp.com/auth'
 
         const {data: {token, userId, hashedPassword}} = await axios.post(`${URL}/${isSignUp ? 'signup' : 'login'}`, {
             username, password, fullName: form.fullName, phoneNumber, avatarURL,
