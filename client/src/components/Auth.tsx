@@ -37,7 +37,7 @@ const Auth = () => {
         const URL = 'http://localhost:5000/auth'
 
         const {data: {token, userId, hashedPassword}} = await axios.post(`${URL}/${isSignUp ? 'signup' : 'login'}`, {
-            username, password, fullName, phoneNumber, avatarURL,
+            username, password, fullName: form.fullName, phoneNumber, avatarURL,
         })
 
         console.log(token, userId, hashedPassword)
@@ -47,7 +47,7 @@ const Auth = () => {
         cookies.set('fullName', fullName)
         cookies.set('userId', userId)
 
-        if(isSignUp) {
+        if (isSignUp) {
             cookies.set('phoneNumber', phoneNumber)
             cookies.set('avatarUrl', avatarURL)
             cookies.set('hashedPassword', hashedPassword)

@@ -2,7 +2,7 @@ import React from 'react'
 import {Avatar, useChatContext} from 'stream-chat-react'
 
 const TeamChannelPreview = ({...previewProps}) => {
-    const {channel, type} = previewProps
+    const {channel, type, setIsCreating, setIsEditing, setToggleContainer, setActiveChannel} = previewProps
     const {channel: activeChannel, client} = useChatContext()
 
     // Preview for channel with multiple users
@@ -19,8 +19,10 @@ const TeamChannelPreview = ({...previewProps}) => {
     const DirectPreview = () => {
         const members: any = Object.values(channel.state.members).filter(({user}: any) => user?.id !== client?.userID)
 
+        const userName = members[0]?.user?.fullName.length > 0 ? members[0]?.user?.fullName : members[0]?.user?.name
+
         return <div className="channel-preview__item single">
-            <Avatar image={members[0]?.user?.image} name={members[0]?.user?.fullName} size={24}/>
+            <Avatar image={members[0]?.user?.image} name={userName} size={36}/>
             <p>
                 {members[0]?.user?.fullName}
             </p>
@@ -28,7 +30,10 @@ const TeamChannelPreview = ({...previewProps}) => {
     }
 
     const onChatSelect = () => {
-
+        setIsCreating(false)
+        setIsEditing(false)
+        setActiveChannel(channel)
+        if (setToggleContainer) setToggleContainer((prev: any) => !prev)
     }
 
     return (
