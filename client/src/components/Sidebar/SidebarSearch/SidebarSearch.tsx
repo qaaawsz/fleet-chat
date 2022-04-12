@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
 import {useChatContext} from 'stream-chat-react'
-import {ResultsDropdown} from './index'
+import {ResultsDropdown} from '../../index'
 
-const ChannelSearch: React.FC<{ setToggleContainer: Function | undefined }> = ({setToggleContainer}) => {
+const SidebarSearch: React.FC<{ setToggleContainer: Function | undefined }> = ({setToggleContainer}) => {
     const {client, setActiveChannel} = useChatContext()
     const [querySearch, setQuerySearch] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -59,9 +59,6 @@ const ChannelSearch: React.FC<{ setToggleContainer: Function | undefined }> = ({
     return (
         <div className="channel-search__container">
             <div className="channel-search__input__wrapper">
-                <div className="channel-search__input__icon">
-                    Search icon
-                </div>
                 <input
                     placeholder="Search for channels"
                     type="text"
@@ -86,4 +83,5 @@ const ChannelSearch: React.FC<{ setToggleContainer: Function | undefined }> = ({
     )
 }
 
-export default ChannelSearch
+export default SidebarSearch
+

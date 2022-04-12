@@ -40,11 +40,7 @@ const TeamChannelPreview = ({...previewProps}) => {
         <div
             className={channel?.id === activeChannel?.id ? 'channel-preview__wrapper__selected' : 'channel-preview__wrapper'}
             onClick={onChatSelect}>
-            {
-                type === 'team'
-                    ? <ChannelPreview/>
-                    : <DirectPreview/>
-            }
+            {type === 'team' ? <ChannelPreview/> : <DirectPreview/>}
         </div>
     )
 }

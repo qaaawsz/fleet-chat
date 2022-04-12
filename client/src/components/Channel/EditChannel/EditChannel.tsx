@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react'
 import {useChatContext} from 'stream-chat-react'
-import {UserList} from './index'
+import {UserList} from '../../index'
 
 interface IEditChannel {
     setIsEditing: Function

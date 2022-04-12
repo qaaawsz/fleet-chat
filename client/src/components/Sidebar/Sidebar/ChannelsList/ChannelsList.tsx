@@ -1,6 +1,7 @@
 import React from 'react'
+import AddChannel from '../AddChannel/AddChannel'
 
-const TeamChannelList = ({...listProps}) => {
+const ChannelsList = ({...listProps}) => {
     const {
         children,
         error = false,
@@ -52,27 +53,4 @@ const TeamChannelList = ({...listProps}) => {
     )
 }
 
-interface IAddChannel {
-    setCreateType: Function
-    setIsCreating: Function
-    setIsEditing: Function
-    setToggleContainer: Function | undefined
-    type: string
-}
-
-const AddChannel: React.FC<IAddChannel> =
-    ({setCreateType, setIsCreating, setIsEditing, type, setToggleContainer}) => {
-        return (
-            <button
-                onClick={() => {
-                    setCreateType(type)
-                    setIsCreating((prevState: any) => !prevState)
-                    setIsEditing(false)
-                    if (setToggleContainer) setToggleContainer((prevState: any) => !prevState)
-                }}>
-                add channel
-            </button>
-        )
-    }
-
-export default TeamChannelList
+export default ChannelsList

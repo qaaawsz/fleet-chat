@@ -1,6 +1,7 @@
 import React from 'react'
-import {Channel, useChatContext, MessageTeam, Window, ChannelHeader, MessageList, MessageInput} from 'stream-chat-react'
-import {ChannelInner, CreateChannel, EditChannel, TeamMessage} from './index'
+import {Channel, MessageTeam,} from 'stream-chat-react'
+import {ChannelBody, CreateChannel, EditChannel} from '../index'
+import EmptyChat from './EmptyChat/EmptyChat'
 
 
 interface IChannelContainer {
@@ -11,7 +12,7 @@ interface IChannelContainer {
     createType: string
 }
 
-const ChannelContainer: React.FC<IChannelContainer> =
+const ChannelController: React.FC<IChannelContainer> =
     ({
          isCreating,
          setIsCreating,
@@ -19,9 +20,6 @@ const ChannelContainer: React.FC<IChannelContainer> =
          setIsEditing,
          createType,
      }) => {
-        //getting current specific channel
-        const {channel} = useChatContext()
-
 
         if (isCreating) {
             return (
@@ -39,28 +37,16 @@ const ChannelContainer: React.FC<IChannelContainer> =
             )
         }
 
-        const EmptyState = () => (
-            <div className="channel-empty__container">
-                <p className="channel-empty__first">
-                    This is the beginning of your chat history
-                </p>
-
-                <p className="channel-empty__second">
-                    Sent messages, attachments, links, emojis, and more!
-                </p>
-            </div>
-        )
-
         return (
             <div className="channel__container">
                 <Channel
-                    EmptyStateIndicator={EmptyState}
+                    EmptyStateIndicator={EmptyChat}
                     Message={(messageProps, i) => <MessageTeam key={i} {...messageProps} />}
                 >
-                    <ChannelInner setIsEditing={setIsEditing}/>
+                    <ChannelBody setIsEditing={setIsEditing}/>
                 </Channel>
             </div>
         )
     }
 
-export default ChannelContainer
+export default ChannelController
